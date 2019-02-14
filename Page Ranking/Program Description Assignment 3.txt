@@ -1,0 +1,161 @@
+# This is the program description file for the Program wrtitten in finalIrAssignment3.py
+# This file describes the flow of the program and also describes the methods libraries used in the program. 
+
+This File creates binary files and 
+
+Libraries used in the program:
+-nltk
+-glob
+-dom
+-os
+-sys
+-collections
+-pickle
+
+
+OS
+The OS module in Python provides a way of using operating system dependent
+functionality. 
+os.path.join() is used to join the path and read all set of files 
+
+
+The functions that the OS module provides allows you to interface with the
+underlying operating system that Python is running on – be that Windows, Mac or
+Linux. 
+
+
+SYS
+sys.argv is a list in Python, which contains the command-line arguments passed to the script. 
+
+
+Glob
+- The glob module finds all the pathnames matching a specified pattern according to the rules used by the shell
+-In my program we have used glob.glob(pathname) so that is stores the file path in the string specification format.
+
+
+##### Tokenization#######
+Word_tokenize()- This is the main function which used NLTK library to tokenize the text.
+-Compiles and returns a regular expression for word tokenization
+
+|
+        (?=%(WordStart)s)\S+?  # Accept word characters until end is found
+        (?= # Sequences marking a word's end
+            \s|                                 # White-space
+            $|                                  # End-of-string
+            %(NonWord)s|%(MultiChar)s|          # Punctuation
+            ,(?=$|\s|%(NonWord)s|%(MultiChar)s) # Comma if at end of word
+        )
+|
+
+stopwords = ['a', 'all', 'an', 'and', 'any', 'are', 'as', 'be', 'been', 'but', 'by', 'few', 'for',
+             'have', 'he', 'her', 'here', 'him', 'his', 'how', 'i', 'in', 'is', 'it', 'its',
+             'many', 'me', 'my', 'none', 'of', 'on', 'or', 'our', 'she', 'some', 'the', 'their',
+             'them', 'there', 'they', 'that', 'this', 'us', 'was', 'what', 'when', 'where',
+             'which', 'who', 'why', 'will', 'with', 'you', 'your'] 
+
+Stop Words: A stop word is a commonly used word (such as “the”, “a”, “an”, “in”) that a search engine has been programmed to ignore, both when indexing entries for searching and when retrieving them as the result of a search query.
+
+We would not want these words taking up space in our database, or taking up valuable processing time. For this, we can remove them easily, by storing a list of words that you consider to be stop words. NLTK(Natural Language Toolkit) in python has a list of stopwords stored in 16 different languages.
+
+from nltk.tokenize import sent_tokenize, word_tokenize
+from nltk.corpus import stopwords
+stopWords = set(stopwords.words('english')) // Removes Stopwords from the program 
+
+WordNetLemmatizer()
+WordNet is a large lexical database of English. Nouns, verbs, adjectives and adverbs are grouped into sets of cognitive synonyms (synsets), each expressing a distinct concept. Synsets are interlinked by means of conceptual-semantic and lexical relations. The resulting network of meaningfully related words and concepts can be navigated with the browser. WordNet is also freely and publicly available for download. WordNet’s structure makes it a useful tool for computational linguistics and natural language processing.
+
+It splits punctuation from words except periods. 
+In case of alpha numeric strings the tokens are not split and maintained as it is.
+eg:: "alpha123text" this maintains a single string coz when we search on google and if we split the tokens then it would provide inconsistent results. Thus i have chosen not to split the strings which are alphanumeric 
+
+Lemmas
+Lemmatization usually refers to doing things properly with the use of a vocabulary and morphological analysis of words, normally aiming to remove inflectional endings only and to return the base or dictionary form of a word, which is known as the lemma .
+In this program the WordnetLemmatizer.lemmatize() brings the word to its original form. We have various parts of speech and thus we need to remove the parts of speech to bring the program to its original form. Thus we use the POS tag from the wordnet lemmatizer from the provided library.
+
+DATA STRUCTURE USED: Dictionary from python (which stores the key value pair)
+To return the keys, we would use the dict.keys() method.
+We store the keys and values to find some important aspects in the program. we need to find the keys to join various lists associated with it. We create the posting files using the sequence. The posting files contains the
+{"Term":"Term frequency ":"Document Frequency":"Maximum no the term occurs":"The docID and the frequency in which it appears"}
+Same has been done for lemmas and stems respectively
+
+append is used to append the lists
+
+we use the file.open() and file.write() to Create and write on the file. The Files are written and the output is printed.
+
+We have used collections.counter and collections.
+Counter is a dict subclass which helps to count hashable objects. Inside it elements are stored as dictionary keys and counts are stored as values which can be zero or negative.Counter objects has a method called elements which returns an iterator over elements repeating each as many times as its count. Elements are returned in arbitrary order. most_common is a method which returns most common elements and their counts from the most common to the least. 
+
+Default Dictionary
+A dictionary is an associative array (also known as hashes). Any key of the dictionary is associated (or mapped) to a value. The values of a dictionary can be any Python data type. So dictionaries are unordered key-value-pairs. Dictionaries belong to the built-in mapping type.
+defaultdict is a dictionary like object which provides all methods provided by dictionary but takes first argument (default_factory) as default data type for the dictionary. Using defaultdict is faster than doing the same using dict.set_default method.Named tuples helps to have meaning of each position in a tuple and allow us to code with better readability and self-documenting code. You can use them in any place where you are using tuples. In the example we will create a namedtuple to show hold information for points.
+To add items to dictionaries or modify values, we can use wither the dict[key] = value syntax or the method dict.update()
+
+
+SET
+deletes all duplicates from the list 
+
+Collections.counter()
+Dict subclass for counting hashable objects 
+
+
+List[]
+Python has a great built-in list type named "list". List literals are written within square brackets [ ]. Lists work similarly to strings -- use the len() function and square brackets [ ] to access data, with the first element at index 0. ... Instead, assignment makes the two variables point to the one list in memory.
+
+To add items to dictionaries or modify values, we can use wither the dict[key] = value syntax or the method dict.update()
+
+Max() 
+The max() method returns the largest element in an iterable or largest of two or more parameters.
+
+
+PICKLE
+pickle — Python object serialization. ... “Pickling” is the process whereby a Python object hierarchy is converted into a byte stream, and “unpickling” is the inverse operation, whereby a byte stream (from a binary file or bytes-like object) is converted back into an object hierarchy.Generally you can pickle any object if you can pickle every attribute of that object. Classes, functions, and methods cannot be pickled -- if you pickle an object, the object's class is not pickled, just a string that identifies what class it belongs to
+
+The Relevance of the queries are made into t
+
+
+
+ w1 = (0.4 + 0.6 * math.log10(tf + 0.5) / math.log10(maxtf + 1.0)) * (math.log10(collectionsize / df) / math.log10(collectionsize)) 
+ w2 = (0.4 + 0.6 * (tf / (tf + 0.5 + 1.5 * (doclen / avgdoclen))) * math.log10(collectionsize / df)/ math.log10(collectionsize))
+
+We compute the weights w1 and W2 for calculating the ranking of the documents. We generally focus on the term frequency for computing the rankings of the documents. The ranking are essential for the search engine to keep a track of the queries and the words. The ranks are generated and thus we can have a list of words and documents. 
+
+We have used the term length while computing the Weight2. Thus even the non relevant document created do not have the same weights scheme used. Thus they also recieve the score which is not lower and is almost equivalent. The avgDocLen remains constant in the list of documents and queries. Thus the score does not change due to it. Thus the score 
+
+W1 weighting Scheme: This is based on the frequency of the term. So, the weights and score are dependent on the frequency of the term. The problem with it is it dosen't account for the semantics of the word in the document or query. It matches with the word and then we can optain the result which maybe relevant or not. 
+
+The w2 weighting scheme is slightly different from the W1 scheme. The W2 scheme is based on the document length. Thus the relevance factor is not taken into consideration. Also, it dosen't into account the actual or semantic meaning of the tokens in query and documents then it gets less weight. Hence, if we retrieve the results we get irrelevant documents as they do not contain the term beacuse of the lower weight given to the document with term.
+
+No assumptions were taken into consideration while creating the program. For computing the relevance we have just used the term frequency and thus we have printed the 
+{"Doc_No":"Cosine Score"}. This has been computed by using the relevance of the weights and the scores combined. 
+
+
+
+
+
+
+
+!!! Program Ends!!! 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
