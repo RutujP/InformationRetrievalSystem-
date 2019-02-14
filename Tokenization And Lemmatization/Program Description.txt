@@ -1,0 +1,112 @@
+# This is the program description file for the Program wrtitten in finalIrAssignment1.py
+# This file describes the flow of the program and also describes the methods libraries used in the program. 
+
+Note: Tokenization and stemming has been carried only on the content present in the TEXT Tag(because only that carries significant text) : Thus the count of tokens and stems may differ
+
+Libraries used in the program:
+-nltk
+-glob
+-dom
+-os
+-sys
+-collections
+
+
+OS
+The OS module in Python provides a way of using operating system dependent
+functionality. 
+os.path.join() is used to join the path and read all set of files 
+
+
+The functions that the OS module provides allows you to interface with the
+underlying operating system that Python is running on – be that Windows, Mac or
+Linux. 
+
+
+SYS
+sys.argv is a list in Python, which contains the command-line arguments passed to the script. 
+
+
+MINIDOM()
+The xml.dom.minidom is a minimal implementation of the Document Object Model Interface. 
+xml.dom.minidom.parse(filename_)
+- This returns a document from the given input. The function will change the document handler of the parser and activate namespace support. 
+- This parses the xml files and it gets stored in the document. 
+
+The ElementTree Class can be used to wrap an element structure, convert it from and to xml
+- we have used the cElementTree by the Tag Name['Text']. ### Here i have parsed the content onlyn from the text part of the xml files. 
+<Text>
+### This part has been tokenized and stemmed ###
+</Text> 
+
+Glob
+- The glob module finds all the pathnames matching a specified pattern according to the rules used by the shell
+-In my program we have used glob.glob(pathname) so that is stores the file path in the string specification format.
+
+removepunctuation()###### Handle Punctuation######
+--removepunctuation is the user defined function which removes the punctuation from the text and then passes it into tokenizer. It removes whitespaces, commas, periods and all sorts of other punctuation.
+-We make use of str.maketrans which builds a translation table. which is mapping of integers or characters to integers, string or nothing. we go to the string to translate and replace everything that appears as a key in the mapping and returns value assigned to it.
+- Whatever we have to remove i passed it s arguments and it returns the table and string.translate() function returns a copy of the string in which all characters have been translated using table, deleting all characters found in the string.
+
+##### Tokenization#######
+Word_tokenize()- This is the main function which used NLTK library to tokenize the text.
+-Compiles and returns a regular expression for word tokenization
+
+|
+        (?=%(WordStart)s)\S+?  # Accept word characters until end is found
+        (?= # Sequences marking a word's end
+            \s|                                 # White-space
+            $|                                  # End-of-string
+            %(NonWord)s|%(MultiChar)s|          # Punctuation
+            ,(?=$|\s|%(NonWord)s|%(MultiChar)s) # Comma if at end of word
+        )
+|
+
+It splits punctuation from words except periods. 
+In case of alpha numeric strings the tokens are not split and maintained as it is.
+eg:: "alpha123text" this maintains a single string coz when we search on google and if we split the tokens then it would provide inconsistent results. Thus i have chosen not to split the strings which are alphanumeric 
+
+SET
+deletes all duplicates from the list 
+
+Collections.counter()
+Dict subclass for counting hashable objects 
+
+most_common(30)
+
+Returns a list  of most commonly ocurring elements and their counts from most common 30 to least.
+
+Program time is given by datetime module
+datetime.now() returns the time when the program has started and in this way we can also know the current time.
+
+
+
+
+
+These are the various functions and libraries used in the program which displays the desired output
+
+!!! Program Ends!!! 
+
+Note: Tokenization and stemming has been carried only on the content present in the TEXT Tag(because only that carries significant text) : Thus the count of tokens and stems may differ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
